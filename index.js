@@ -33,14 +33,20 @@ app.use(express.static(__dirname + '/public'));
 // https://attacomsian.com/blog/uploading-files-nodejs-express
 app.post('/vidcast-api', async (req, res) => {
     try {
-        console.log(req.query.video_id);
-        database.insert({video_id:req.query.video_id});
-        //send response
-        res.send({
-            status: 200,
-            message: 'Vidcast ID Saved',
-            id: req.query.video_id
-        });
+        if (req.query.video_id) {
+            database.insert({video_id:req.query.video_id});
+            //send response
+            res.send({
+                status: 200,
+                message: 'Vidcast ID Saved',
+                id: req.query.video_id
+            });
+        } else {
+            res.send({
+                status: 200,
+                message: 'No video_id provided :('
+            });
+        }
     } catch (err) {
         res.status(500).send(err);
     }
