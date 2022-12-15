@@ -26,9 +26,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(morgan('dev'));
 
-// static files
-app.use(express.static(__dirname + '/public'));
-
 // upload single file
 // https://attacomsian.com/blog/uploading-files-nodejs-express
 app.post('/vidcast-api', async (req, res) => {
@@ -53,7 +50,7 @@ app.post('/vidcast-api', async (req, res) => {
 });
 
 // view engine and routing setup
-const indexRouter = require('./routes/index');
+const indexRouter = require('../routes/index');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use('/', indexRouter);
