@@ -9,12 +9,24 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.get('/', (req, res) => {
-    res.sendFile('index.html', {root: path.join(__dirname, 'public')});
-});
-
 // Database
 let video_ids = [];
+
+app.get('/', (req, res) => {
+    res.send({
+        status: 200,
+        current: video_ids
+    });
+});
+
+app.get('/clear', (req, res) => {
+    video_ids = [];
+    res.send({
+        status: 200,
+        message: 'list cleared',
+        current: video_ids
+    });
+});
 
 app.post('/', (req, res) => {
     try {
