@@ -1,3 +1,3 @@
-# Uploading Files in Node.js and Express
+### An Express.js App deployed to Vercel
 
-For step-by-step instructions, please visit the [blog post](https://attacomsian.com/blog/uploading-files-nodejs-express).
+> Here's a live [demo](https://express-to-vercel-demo.vercel.app/)
