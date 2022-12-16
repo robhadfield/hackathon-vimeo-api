@@ -11,21 +11,27 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', (req, res) => {
     res.sendFile('index.html', {root: path.join(__dirname, 'public')});
-})
+});
+
+// Database
+let video_ids = [];
 
 app.post('/', (req, res) => {
     try {
         if (req.query.video_id) {
+            video_ids.push(req.query.video_id);
             //send response
             res.send({
                 status: 200,
                 message: 'Vidcast ID Saved',
-                id: req.query.video_id
+                id: req.query.video_id,
+                current: video_ids
             });
         } else {
             res.send({
                 status: 200,
-                message: 'No video_id provided :('
+                message: 'No video_id provided',
+                current: video_ids
             });
         }
     } catch (err) {
